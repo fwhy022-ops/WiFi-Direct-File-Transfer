@@ -1,4 +1,24 @@
- WiFi Direct File Transfer is an open source application that will enable sharing 
+CREATE TABLE `ip2location_olson_timezone`(
+	`country_code` CHAR(2),
+	`region_name` VARCHAR(128),
+	`city_name` VARCHAR(128),
+	`olson_tz` VARCHAR(30),
+	`abbreviation` VARCHAR(15),
+	`dst_start` DATE,
+	`dst_end` DATE,
+	INDEX `idx_country_code` (`country_code`),
+	INDEX `idx_region_name` (`region_name`),
+	INDEX `idx_city_name` (`city_name`),
+	INDEX `idx_abbrev` (`abbreviation`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+LOAD DATA LOCAL
+INFILE 'IP2LOCATION-OLSON-TIMEZONE.CSV'
+INTO TABLE `ip2location_olson_timezone`
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n'
+IGNORE 1 LINES; WiFi Direct File Transfer is an open source application that will enable sharing 
  of data between Android devices running Android 4.0 or higher using a WiFi direct
  connection without the use of a separate WiFi access point.This will enable data 
  transfer between devices without relying on any existing network infrastructure. 
